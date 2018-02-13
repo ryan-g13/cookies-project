@@ -1,1 +1,27 @@
+.high-light {
 font-family: 'Spectral SC', serif; 
+text-align: center;
+font-size: 3.5em;
+}
+html {
+  background: url("../img/woodbackground.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+#salmon {
+  margin-left: 20%;
+}
+
+ul {
+  list-style-type: none;
+  color: #c5c6c7;
+  margin: 15px;
+  padding: 10px;
+  width: 25%;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+li a{
+  display: block;
+  width: 75px;
+}
