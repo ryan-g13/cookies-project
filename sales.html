@@ -6,10 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Internal Sales Figures</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" /> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sales-style.css" />
   </head>
 
   <body>
+    <form id="branchEditor">
+      <fieldset>
+        
+        <legend>Add or Edit Branches</legend>
+
+        <label for="id">Branch Abbreviation: </label>
+        <input name="id" type="text" size="10" />
+        
+        <label for="branchName">Branch Name: </label>
+        <input name="branchName" type="text" size="20" />
+
+        <label for="minimum">Minimum Customers Per Hour: </label>
+        <input name="minimum" type="text" size="5" />
+
+        <label for="maximum">Maximum Customers Per Hour: </label>
+        <input name="maximum" type="text" size="5" />
+
+        <label for="avgSales">Average Sales Per Customer: </label>
+        <input name="avgSales" type="text" size="5" />
+
+        <button type="submit">Update Branches</button>
+
+      </fieldset>
+    </form>
     <table id="statTable"></table>
     <script src="js/app.js"></script>
   </body>
