@@ -3,7 +3,6 @@
 //Cookie project Version 0.0
 
 //Array for days of the week
-var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 var hours = [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7];
 var hoursLong = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm '];
 var allBranches = [];
@@ -43,15 +42,15 @@ StoreBranch.prototype.renderHorizontal = function() {
   this.fillCookiesPerHour();
   var trEl = document.createElement('tr');
   var tdEl = document.createElement('td');
-  tdEl.textContent = this.name; 
+  tdEl.textContent = this.name;
   trEl.appendChild(tdEl);
   for (var i = 0; i < hoursLong.length; i++) {
     tdEl = document.createElement('td');
-    tdEl.textContent = this.cookiesPerHour[i]; 
+    tdEl.textContent = this.cookiesPerHour[i];
     trEl.appendChild(tdEl);
   }
   tdEl = document.createElement('td');
-  tdEl.textContent = this.totalCookies; 
+  tdEl.textContent = this.totalCookies;
   trEl.appendChild(tdEl);
   storeTable.appendChild(trEl);
 };
