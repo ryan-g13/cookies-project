@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Internal Sales Figures</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/sales-style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sales-styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
   </head>
 
   <body>
@@ -21,14 +22,14 @@
         <label for="branchName">Branch Name: </label>
         <input name="branchName" type="text" size="20" />
 
-        <label for="minimum">Minimum Customers Per Hour: </label>
-        <input name="minimum" type="text" size="5" />
+        <label for="mini">Minimum Customers Per Hour: </label>
+        <input name="mini" type="number" size="5" min="0" />
 
-        <label for="maximum">Maximum Customers Per Hour: </label>
-        <input name="maximum" type="text" size="5" />
+        <label for="maxi">Maximum Customers Per Hour: </label>
+        <input name="maxi" type="number" size="5" min="0"/>
 
         <label for="avgSales">Average Sales Per Customer: </label>
-        <input name="avgSales" type="text" size="5" />
+        <input name="avgSales" type="number" size="5" min="0" step=".1"/>
 
         <button type="submit">Update Branches</button>
 
