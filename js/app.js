@@ -126,6 +126,26 @@ function updateBranch(event) {
     return alert('One or more of the entry fields is blank. Please fill in the blanks.');
   }
 
+  for (var i = 0; i < allBranches.length; i++) {
+    if (event.target.branchName.value === allBranches[i].name) {
+      //Object array at i reseting values and then setting values from form
+      allBranches[i].totalCookies = 0;
+      allBranches[i].custPerHour = [];
+      allBranches[i].cookiesPerHour = [];
+
+      allBranches[i].minCustomer = parseInt(branchForm.mini.value);
+      allBranches[i].maxCustomer = parseInt(branchForm.maxi.value);
+      allBranches[i].avgSale = parseFloat(branchForm.avgSales.value);
+
+      allBranches[i].fillCustPerHour();
+      allBranches[i].fillCookiesPerHour();
+
+      event.target.reset();
+      fullRender();
+      return;
+    }
+  }
+
   //use new version of the constructor.
   new StoreBranch(branchForm.id.value, branchForm.branchName.value, parseInt(branchForm.mini.value), parseInt(branchForm.maxi.value), parseFloat(branchForm.avgSales.value));
 
