@@ -18,7 +18,7 @@ input {
 
 fieldset {
   max-width: 1000px;
-  border: 7px solid #0113b3;
+  border: 7px double #0113b3;
   border-radius: 75px;
   padding: 10px;
   text-align: center;
