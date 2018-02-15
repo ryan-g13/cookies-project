@@ -91,9 +91,18 @@ function footerRender() {
     thEl.textContent = columnTotals[i];
     trEl.appendChild(thEl);
   } thEl = document.createElement('th');
-  thEl.textContent = 'Total Daily Cookies';
+  thEl.textContent = totalTotal();
   trEl.appendChild(thEl);
   storeTable.appendChild(trEl);
+}
+
+//new totalTotal function
+var headerTotal = 0;
+function totalTotal() {
+  for(var i =0; i < allBranches.length; i++) {
+    headerTotal += allBranches[i].totalCookies;
+  }
+  return headerTotal;
 }
 
 //Wednesday code: Event listeners and forms
