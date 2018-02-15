@@ -1,5 +1,50 @@
-*{
+body {
 font-family: 'Spectral SC', serif; 
 text-align: center;
-font-size: 3.5em;
+background-color: rgb(0, 194, 142);
+}
+
+input {
+  border: 3px solid #0113b3;
+  border-radius: 8px;
+  padding: 5px 5px 5px 5px;
+  margin: 15px;
+  /*display: block;*/
+}
+
+/*label {
+  display: block;
+}*/
+
+fieldset {
+  max-width: 1000px;
+  border: 7px solid #0113b3;
+  border-radius: 75px;
+  padding: 10px;
+  text-align: center;
+}
+
+legend {
+  background-color: black;
+  border: 2px solid #dcdcdc;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+th {
+  border: 2px solid #dcdcdc;
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
+  text-transform: capitalize;
+}
+td {
+  border: 2px solid #dcdcdc;
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
 }

@@ -8,6 +8,9 @@ var hoursLong = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 p
 var allBranches = [];
 var storeTable = document.getElementById('statTable');
 headerRender();
+//new global variables targeting html IDs
+var branchForm = document.getElementById('branchEditor');
+
 
 //Constructor function for Cookies.
 function StoreBranch(id, name, minCustomer, maxCustomer, avgSale) {
@@ -24,7 +27,7 @@ function StoreBranch(id, name, minCustomer, maxCustomer, avgSale) {
 }
 StoreBranch.prototype.fillCustPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
-    this.custPerHour.push(Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1) + this.minCustomer));
+    this.custPerHour.push(Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1)) + this.minCustomer);
   }
 };
 
@@ -54,7 +57,7 @@ StoreBranch.prototype.renderHorizontal = function() {
 };
 
 //end of constructor
-//Creation of instances of the constructor
+//Creation of instances of the constructor - Possible refactor into an array or object or for loop?
 new StoreBranch('Alki','Alki', 2, 16, 4.6);
 new StoreBranch('Cap Hill', 'Capitol Hill', 20, 38, 2.3);
 new StoreBranch('SeaTac','SeaTac Airport', 3, 24, 1.2);
@@ -76,3 +79,21 @@ function headerRender() {
   trEl.appendChild(thEl);
   storeTable.appendChild(trEl);
 }
+
+//Wednesday code: Event listeners and forms
+function updateBranch(event) {
+  event.preventDefault(); //prevents page reload on submit
+
+  //Validation checks for input
+  if (!event.target.id.value || !event.target.branchName.value) {
+    return alert('One or more of the entry fields is blank. Please fill in the blanks.');
+  }
+
+  //use new version of the constructor.
+  new StoreBranch(branchForm.id.value, branchForm.branchName.value, parseInt(branchForm.mini.value), parseInt(branchForm.maxi.value), parseInt(branchForm.avgSales.value));
+
+  event.target.reset();
+}
+
+//Event Listener
+branchForm.addEventListener('submit', updateBranch);
