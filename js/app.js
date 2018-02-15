@@ -6,6 +6,7 @@
 var hours = [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7];
 var hoursLong = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm '];
 var allBranches = [];
+var columnTotals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var storeTable = document.getElementById('statTable');
 headerRender();
 //new global variables targeting html IDs
@@ -36,6 +37,7 @@ StoreBranch.prototype.fillCookiesPerHour = function() {
   for (var i = 0; i < this.custPerHour.length; i++) {
     this.cookiesPerHour.push(Math.floor(this.custPerHour[i] * this.avgSale));
     this.totalCookies += this.cookiesPerHour[i];
+    columnTotals[i] += this.cookiesPerHour[i];
   }
 };
 
@@ -79,6 +81,20 @@ function headerRender() {
   trEl.appendChild(thEl);
   storeTable.appendChild(trEl);
 }
+function footerRender() {
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Column Totals';
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hoursLong.length; i++) {
+    thEl = document.createElement('th');
+    thEl.textContent = columnTotals[i];
+    trEl.appendChild(thEl);
+  } thEl = document.createElement('th');
+  thEl.textContent = 'Total Daily Cookies';
+  trEl.appendChild(thEl);
+  storeTable.appendChild(trEl);
+}
 
 //Wednesday code: Event listeners and forms
 function updateBranch(event) {
@@ -94,6 +110,6 @@ function updateBranch(event) {
 
   event.target.reset();
 }
-
+footerRender();
 //Event Listener
 branchForm.addEventListener('submit', updateBranch);
