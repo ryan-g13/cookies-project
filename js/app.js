@@ -1,6 +1,6 @@
 'use strict';
 
-//Cookie project Version 0.0
+//Cookie project Version 1.0 - includes table, daily totals, totalTotal and new row functionality
 
 //Array for days of the week
 var hours = [6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7];
@@ -8,7 +8,6 @@ var hoursLong = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 p
 var allBranches = [];
 var columnTotals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var storeTable = document.getElementById('statTable');
-headerRender();
 //new global variables targeting html IDs
 var branchForm = document.getElementById('branchEditor');
 
@@ -24,8 +23,10 @@ function StoreBranch(id, name, minCustomer, maxCustomer, avgSale) {
   this.cookiesPerHour = [];
   this.totalCookies = 0;
   allBranches.push(this);
-  this.renderHorizontal();
+  this.fillCustPerHour(); //moved both methods here to ensure they get called on object creation
+  this.fillCookiesPerHour();
 }
+
 StoreBranch.prototype.fillCustPerHour = function() {
   for (var i = 0; i < hours.length; i++) {
     this.custPerHour.push(Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1)) + this.minCustomer);
@@ -33,7 +34,6 @@ StoreBranch.prototype.fillCustPerHour = function() {
 };
 
 StoreBranch.prototype.fillCookiesPerHour = function() {
-  this.fillCustPerHour();
   for (var i = 0; i < this.custPerHour.length; i++) {
     this.cookiesPerHour.push(Math.floor(this.custPerHour[i] * this.avgSale));
     this.totalCookies += this.cookiesPerHour[i];
@@ -41,8 +41,8 @@ StoreBranch.prototype.fillCookiesPerHour = function() {
   }
 };
 
+//Row function prints rows of data from form field.
 StoreBranch.prototype.renderHorizontal = function() {
-  this.fillCookiesPerHour();
   var trEl = document.createElement('tr');
   var tdEl = document.createElement('td');
   tdEl.textContent = this.name;
@@ -81,6 +81,8 @@ function headerRender() {
   trEl.appendChild(thEl);
   storeTable.appendChild(trEl);
 }
+
+//Footer rendering function includes call for totalTotal function
 function footerRender() {
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
@@ -91,9 +93,28 @@ function footerRender() {
     thEl.textContent = columnTotals[i];
     trEl.appendChild(thEl);
   } thEl = document.createElement('th');
-  thEl.textContent = 'Total Daily Cookies';
+  thEl.textContent = totalTotal();
   trEl.appendChild(thEl);
   storeTable.appendChild(trEl);
+}
+
+//new totalTotal function
+var headerTotal = 0;
+function totalTotal() {
+  for(var i =0; i < allBranches.length; i++) {
+    headerTotal += allBranches[i].totalCookies;
+  }
+  return headerTotal;
+}
+
+//Create method fullRender that clears values and ensures totalTotal is on the bottom.
+function fullRender() {
+  storeTable.innerHTML = '';
+  headerRender();
+  for(var i = 0; i < allBranches.length; i++) {
+    allBranches[i].renderHorizontal();
+  }
+  footerRender();
 }
 
 //Wednesday code: Event listeners and forms
@@ -105,11 +126,34 @@ function updateBranch(event) {
     return alert('One or more of the entry fields is blank. Please fill in the blanks.');
   }
 
+  for (var i = 0; i < allBranches.length; i++) {
+    if (event.target.branchName.value === allBranches[i].name) {
+      //Object array at i reseting values and then setting values from form
+      allBranches[i].totalCookies = 0;
+      allBranches[i].custPerHour = [];
+      allBranches[i].cookiesPerHour = [];
+
+      allBranches[i].minCustomer = parseInt(branchForm.mini.value);
+      allBranches[i].maxCustomer = parseInt(branchForm.maxi.value);
+      allBranches[i].avgSale = parseFloat(branchForm.avgSales.value);
+
+      allBranches[i].fillCustPerHour();
+      allBranches[i].fillCookiesPerHour();
+
+      event.target.reset();
+      fullRender();
+      return;
+    }
+  }
+
   //use new version of the constructor.
-  new StoreBranch(branchForm.id.value, branchForm.branchName.value, parseInt(branchForm.mini.value), parseInt(branchForm.maxi.value), parseInt(branchForm.avgSales.value));
+  new StoreBranch(branchForm.id.value, branchForm.branchName.value, parseInt(branchForm.mini.value), parseInt(branchForm.maxi.value), parseFloat(branchForm.avgSales.value));
 
   event.target.reset();
+  fullRender(); //call page render on click
 }
-footerRender();
+
 //Event Listener
 branchForm.addEventListener('submit', updateBranch);
+
+fullRender(); //draws origin iteration of 5 branches
