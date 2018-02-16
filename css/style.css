@@ -1,27 +1,44 @@
+html {
+  background: url("../img/woodbackgroundsmall.jpg") no-repeat center center fixed;
+  background-size: cover;
+  width: 960px;
+}
+* {
+  color: #c5c6c7;
+  font-family: 'Spectral SC', serif; 
+  text-align: center;
+}
+body {
+  width: 75%;
+}
+div {
+  margin: auto;
+  height: 100px;
+  width: 150px;
+}
+ul {
+  display: inline;
+}
+/* 
 .high-light {
-font-family: 'Spectral SC', serif; 
-text-align: center;
 font-size: 3.5em;
 }
-html {
-  background: url("../img/woodbackground.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-#salmon {
-  margin-left: 20%;
-}
-
 ul {
-  list-style-type: none;
-  color: #c5c6c7;
+  list-style-type: none;  
   margin: 15px;
   padding: 10px;
-  width: 25%;
-  height: 100%; /* Full height */
-  position: fixed; /* Make it stick, even on scroll */
-  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+  width: 33%;
+  height: 100%; /* Full height 
+  position: fixed; /* Make it stick, even on scroll 
+  overflow: auto; /* Enable scrolling if the sidenav has too much content 
 }
+  */
+/*
 li a{
   display: block;
   width: 75px;
+  font-size: 3vw;
 }
+h1 {
+  color: #c5c6c7;  
+} */
