@@ -1,7 +1,12 @@
+html {
+  background: url("../img/woodbackgroundsmall.jpg") no-repeat center center fixed;
+  background-size: cover;
+  width: 960px;
+}
+
 body {
 font-family: 'Spectral SC', serif; 
 text-align: center;
-background-color: rgb(0, 194, 142);
 }
 
 input {
@@ -16,12 +21,20 @@ input {
   display: block;
 }*/
 
+table {
+  background-color: #dcdcdc;
+  opacity: .75;
+}
+
 fieldset {
   max-width: 1000px;
   border: 7px double #0113b3;
   border-radius: 75px;
   padding: 10px;
   text-align: center;
+  background-color: #dcdcdc;
+  opacity: .75;
+  margin-bottom: 50px;
 }
 
 legend {
@@ -47,4 +60,8 @@ td {
   border-radius: 4px;
   padding: 2px;
   text-align: center;
+}
+
+button {
+  background-color: white;
 }
